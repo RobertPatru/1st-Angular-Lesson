@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-@Component ({
+@Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.css']
@@ -13,12 +13,12 @@ export class UserComponent {
     age = 34;
 
     // Methods
-    constructor () {
+    constructor() {
         console.log('This is the constructor inside the user component');
         this.saySomething();
     }
 
-    saySomething () {
+    saySomething() {
         console.log(`First Name: ${this.firstName}`);
     }
 } 
