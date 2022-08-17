@@ -8,17 +8,29 @@ import { Component } from "@angular/core";
 
 export class UserComponent {
     // Properties
-    firstName = "Robert";
-    lastName = "Baratheon";
-    age = 34;
+    firstName: string;
+    lastName : string;
+    age: number;
+    address;
 
     // Methods
-    constructor() {
-        console.log('This is the constructor inside the user component');
-        this.saySomething();
+    constructor() { 
+        this.firstName = 'Robert';
+        this.lastName = 'Baratheon';
+        this.age = 34;
+
+        this.address  = {
+            city: 'Craiova',
+            street: 'Linia Mare',
+            number: '58'
+        }
     }
 
     saySomething() {
         console.log(`First Name: ${this.firstName}`);
+    }
+
+    showAge() {
+        return this.age;
     }
 } 
