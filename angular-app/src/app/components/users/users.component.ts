@@ -43,11 +43,11 @@ export class UsersComponent implements OnInit {
           firstName: 'adwa',
           lastName: 'dsa',
           age: 324,
-          address: {
-            street: 'Linia dsa',
-            city: 'sda',
-            number: 121
-          }
+          // address: {
+          //   street: 'Linia dsa',
+          //   city: 'sda',
+          //   number: 121
+          // }
         }
       ];
 
