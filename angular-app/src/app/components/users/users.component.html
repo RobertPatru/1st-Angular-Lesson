@@ -1,11 +1,13 @@
 <h2>Users</h2>
-<ul>
+<ul *ngIf="users?.length > 0 && !loading">
   <li *ngFor="let user of users">
     <h3>My name is: {{ user.firstName }} {{ user.lastName }}</h3>
-    <ul>
+    <ul >
       <li>And I live in {{ user.address.city }}</li>
       <li>{{ user.address.street }}</li>
       <li>{{ user.address.number }}</li>
     </ul>
   </li>
 </ul>
+
+<h1 *ngIf="loading">Loading...</h1>
