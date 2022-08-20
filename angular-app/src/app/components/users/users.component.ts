@@ -11,6 +11,7 @@ export class UsersComponent implements OnInit {
   users: any;
   showExtended: boolean = true;
   loading: boolean = true;
+  enableAdd: boolean = false;
 
   constructor() {
 
@@ -27,7 +28,8 @@ export class UsersComponent implements OnInit {
             street: 'Linia Mare',
             city: 'Ciocanesti',
             number: 11
-          }
+          },
+          image: 'https://picsum.photos/seed/picsum/600/'
         },
         {
           firstName: 'Kevin',
@@ -37,23 +39,20 @@ export class UsersComponent implements OnInit {
             street: 'a Mare',
             city: 'dsa',
             number: 112
-          }
+          },
+          image: 'https://picsum.photos/seed/picsum/600/'
         },
         {
           firstName: 'adwa',
           lastName: 'dsa',
           age: 324,
-          // address: {
-          //   street: 'Linia dsa',
-          //   city: 'sda',
-          //   number: 121
-          // }
+          // image: 'https://picsum.photos/seed/picsum/600/'
         }
       ];
 
       this.loading = false;
-    }, 2000);
-    
+    }, 1000);
+
 
     // this.addUser(
     //   {

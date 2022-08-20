@@ -1,10 +1,11 @@
 export interface User {
     firstName: string,
     lastName: string,
-    age: number,
-    address: {
-        street: string,
-        city: string,
-        number: number
-    }
+    age?: number,
+    address?: {
+        street?: string,
+        city?: string,
+        number?: number
+    },
+    image?: string
 }
