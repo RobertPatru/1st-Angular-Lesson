@@ -1,27 +1,38 @@
 <h2>Users</h2>
 
-<button [disabled]="!enableAdd" class="btn btn-light btn-block mb-3">
-    Add new User
+<button
+  [disabled]="!enableAdd"
+  class="btn btn-block mb-3"
+  [ngClass]="currentClasses"
+>
+  Add new User
 </button>
 
 <ul class="list-unstyled" *ngIf="users?.length > 0 && !loading">
-    <li class="card card-body mb-3" *ngFor="let user of users">
-        <div class="row">
-        <div class="col-sm-4" *ngIf="user.image">
-            <img [src]="user.image" alt="profile" class="img-fluid" />
-            <!-- <img src="{{user.image}}" alt="profile" class="img-fluid"> -->
-            <!-- <img bind-src="user.image" alt="profile" class="img-fluid"> -->
-        </div>
-        <div class="col-sm-8">
-            <h3>My name is: {{ user.firstName }} {{ user.lastName }}</h3>
-            <ul class="list-group" *ngIf="user.address">
-            <li class="list-group-item">And I live in {{ user.address.city }}</li>
-            <li class="list-group-item">{{ user.address.street }}</li>
-            <li class="list-group-item">{{ user.address.number }}</li>
-            </ul>
-        </div>
-        </div>
-    </li>
+  <li
+    class="card card-body mb-3"
+    *ngFor="let user of users"
+    [class.bg-light]="user.isActive"
+    [style.border-color]="user.isActive ? 'green' : 'red'"
+  >
+    <div class="row">
+      <div class="col-sm-4" *ngIf="user.image">
+        <img [src]="user.image" alt="profile" class="img-fluid" />
+      </div>
+      <div class="col-sm-8">
+        <h3 [ngStyle]="currentStyles">
+          {{ user.firstName }} {{ user.lastName }}
+        </h3>
+        <ul class="list-group" *ngIf="user.address && showExtended">
+          <li class="list-group-item">And I live in {{ user.address.city }}</li>
+          <li class="list-group-item">{{ user.address.street }}</li>
+          <li class="list-group-item">{{ user.address.number }}</li>
+          <li class="list-group-item">Balance: {{ user.balance | currency:"GBP":"symbol" }}</li>
+          <li class="list-group-item">Registration Date: {{ user.registered | date }}</li>
+        </ul>
+      </div>
+    </div>
+  </li>
 </ul>
 
 <h1 *ngIf="loading">Loading...</h1>
