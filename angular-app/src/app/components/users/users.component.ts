@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-users',
@@ -12,8 +11,6 @@ export class UsersComponent implements OnInit {
   showExtended: boolean = true;
   loading: boolean = true;
   enableAdd: boolean = true;
-  currentClasses = {}
-  currentStyles = {}
 
   constructor() {
 
@@ -31,10 +28,9 @@ export class UsersComponent implements OnInit {
             city: 'Ciocanesti',
             number: 11
           },
-          image: 'https://picsum.photos/seed/picsum/600/',
           isActive: true,
-          balance: 756,
-          registered: new Date('05/04/2019 08:30:00')
+          registered: new Date('05/04/2019 08:30:00'),
+          hide: true
         },
         {
           firstName: 'Kevin',
@@ -45,40 +41,32 @@ export class UsersComponent implements OnInit {
             city: 'dsa',
             number: 112
           },
-          image: 'https://picsum.photos/seed/picsum/600/',
           isActive: false,
-          balance: 100,
-          registered: new Date('11/02/2018 08:30:00')
+          registered: new Date('11/02/2018 08:30:00'),
+          hide: true
         },
         {
           firstName: 'Marcel ',
-          lastName: 'Poama',
+          lastName: 'Toma',
           age: 324,
-          // image: 'https://picsum.photos/seed/picsum/600/',
           isActive: true,
-          balance: 200,
-          registered: new Date('06/12/2017 08:30:00')
+          registered: new Date('06/12/2017 08:30:00'),
+          hide: true
         }
       ];
 
-      this.setCurrentClasses();
-      this.setCurrentStyles();
-
       this.loading = false;
-    }, 1000);
+    }, 500);
   }
 
-  setCurrentClasses () {
-    this.currentClasses = {
-      'btn-success': this.enableAdd,
-      'big-text': this.showExtended
-    }
+
+  addUser(user:any) {
+    this.users.push(user);
   }
 
-  setCurrentStyles() {
-    this.currentStyles = {
-      'padding-top': this.showExtended ? '0' : '40px',
-      'font-big': this.showExtended ? '' : '40px',
-    }
+  extendInfo(user: any) {
+    // user.hide ? user.hide = false : user.hide = true;
+    user.hide = !user.hide;
+    console.log(user);
   }
 }
