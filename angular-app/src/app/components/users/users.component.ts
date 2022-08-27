@@ -7,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class UsersComponent implements OnInit {
+  user: any = {
+    firstName: "",
+    lastName: "",
+    email: "",
+  }
+  
   users: any;
   showExtended: boolean = true;
   loading: boolean = true;
-  enableAdd: boolean = true;
+  enableAdd: boolean = false;
+  showUserForm: boolean = false;
 
   constructor() {
 
@@ -23,11 +30,7 @@ export class UsersComponent implements OnInit {
           firstName: 'Robert',
           lastName: 'Baratheon',
           age: 34,
-          address: {
-            street: 'Linia Mare',
-            city: 'Ciocanesti',
-            number: 11
-          },
+          email: "robert@gmail.com",
           isActive: true,
           registered: new Date('05/04/2019 08:30:00'),
           hide: true
@@ -36,11 +39,7 @@ export class UsersComponent implements OnInit {
           firstName: 'Kevin',
           lastName: 'Burche',
           age: 124,
-          address: {
-            street: 'a Mare',
-            city: 'dsa',
-            number: 112
-          },
+          email: "kevin@gmail.com",
           isActive: false,
           registered: new Date('11/02/2018 08:30:00'),
           hide: true
@@ -48,7 +47,7 @@ export class UsersComponent implements OnInit {
         {
           firstName: 'Marcel ',
           lastName: 'Toma',
-          age: 324,
+          email: "marcel@gmail.com",
           isActive: true,
           registered: new Date('06/12/2017 08:30:00'),
           hide: true
@@ -56,17 +55,30 @@ export class UsersComponent implements OnInit {
       ];
 
       this.loading = false;
-    }, 500);
+    }, 200);
   }
 
 
-  addUser(user:any) {
-    this.users.push(user);
+  addUser() {
+    this.users.unshift(this.user);
+    this.user.isActive = true;
+
+    this.user = {
+      firstName: "",
+      lastName: "",
+      email: "",
+    }
   }
 
   extendInfo(user: any) {
     // user.hide ? user.hide = false : user.hide = true;
     user.hide = !user.hide;
     console.log(user);
+  }
+
+  onSubmit(e:any) {
+    this.addUser();
+
+    console.log(e);
   }
 }
