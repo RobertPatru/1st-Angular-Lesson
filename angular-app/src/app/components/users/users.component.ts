@@ -1,84 +1,85 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+// import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-
 export class UsersComponent implements OnInit {
   user: any = {
-    firstName: "",
-    lastName: "",
-    email: "",
+    firstName: '',
+    lastName: '',
+    email: ''
   }
-  
   users: any;
   showExtended: boolean = true;
-  loading: boolean = true;
+  loaded: boolean = false;
   enableAdd: boolean = false;
   showUserForm: boolean = false;
+  @ViewChild('userForm') form: any;
 
-  constructor() {
+  constructor() { }
 
-  }
-
-  ngOnInit(): void {
-    setTimeout(() => {
+  ngOnInit() {
+   
       this.users = [
         {
-          firstName: 'Robert',
-          lastName: 'Baratheon',
-          age: 34,
-          email: "robert@gmail.com",
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john@gmail.com',
           isActive: true,
-          registered: new Date('05/04/2019 08:30:00'),
+          registered: new Date('01/02/2018 08:30:00'),
           hide: true
         },
         {
           firstName: 'Kevin',
-          lastName: 'Burche',
-          age: 124,
-          email: "kevin@gmail.com",
+          lastName: 'Johnson',
+          email: 'kevin@yahoo.com',
           isActive: false,
-          registered: new Date('11/02/2018 08:30:00'),
+          registered: new Date('03/11/2017 06:20:00'),
           hide: true
         },
         {
-          firstName: 'Marcel ',
-          lastName: 'Toma',
-          email: "marcel@gmail.com",
+          firstName: 'Karen',
+          lastName: 'Williams',
+          email: 'karen@gmaial.com',
           isActive: true,
-          registered: new Date('06/12/2017 08:30:00'),
+          registered: new Date('11/02/2016 10:30:00'),
           hide: true
         }
       ];
 
-      this.loading = false;
-    }, 200);
+      this.loaded = true;
   }
 
+  // addUser() {
+  //   this.user.isActive = true;
+  //   this.user.registered = new Date();
 
-  addUser() {
-    this.users.unshift(this.user);
-    this.user.isActive = true;
+  //   this.users.unshift(this.user);
 
-    this.user = {
-      firstName: "",
-      lastName: "",
-      email: "",
+  //   this.user = {
+  //     firstName: '',
+  //     lastName: '',
+  //     email: ''
+  //   }
+  // }
+
+  onSubmit({value, valid}: {value: any, valid: boolean}) {
+    if(!valid){
+      console.log('Form is not valid');
+    } else {
+      value.isActive = true;
+      value.registered = new Date();
+      value.hide = true;
+
+      this.users.unshift(value);
+
+      this.form.reset();
     }
   }
 
-  extendInfo(user: any) {
-    // user.hide ? user.hide = false : user.hide = true;
-    user.hide = !user.hide;
-    console.log(user);
-  }
-
-  onSubmit(e:any) {
-    this.addUser();
-
-    console.log(e);
-  }
+  
 }
